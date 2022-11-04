@@ -12,7 +12,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 // Setting Up Server
 const app = express();
-const port = process.env.port || 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -47,7 +47,7 @@ app.post("/api/notes", function(req, res) {
 
 
 // API Route | "DELETE" request
-app.delete(/api/notes/:id, function(req, res) {
+app.delete("/api/notes/:id", function(req, res) {
     const idToDelete = parseInt(req.params.id);
     readFileAsync("./develop/db/db.json", "utf8").then(function(dta) {
         const notes = [].concat(JSON.parse(data));
